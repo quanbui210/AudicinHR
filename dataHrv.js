@@ -48,8 +48,13 @@ const heartRateData = [
 ];
 
 
-export const purposes = {
+const purposes = {
     morning: ["Work", "Creativity", "Focus"],
     afternoon: ["Focus", "Creativity", "Work"],
     night: ["Relax", "Deep Relaxation", "Meditation", "Sleep"]
 };
+
+
+module.exports = {
+    tracks, heartRateData, purposes
+}

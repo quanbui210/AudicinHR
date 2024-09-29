@@ -1,4 +1,4 @@
-import { heartRateData, tracks } from "../data"
+const { heartRateData, tracks } = require("../data")
 
 const purposes = ["Relax" , "Focus", "Creativity", "Deep Relaxation", "Work"]
 

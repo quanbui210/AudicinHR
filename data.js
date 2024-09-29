@@ -15,4 +15,4 @@ const tracks = [
   { id: 6, track_name: "Heightened Awareness", binaural_beat: "Gamma", frequency: 45, tone: "Intense", purpose: "Focus" }
 ];
 
-module.exports = { heartRateData, tracks, heartRateMapping };
+module.exports = { heartRateData, tracks};

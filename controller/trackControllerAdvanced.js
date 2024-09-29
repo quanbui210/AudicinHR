@@ -1,4 +1,4 @@
-const {tracks, heartRateData, purposes} = require("../data2")
+const {tracks, heartRateData, purposes} = require("../dataHrv")
 
 // I read from the HealthKitAPI, one useful data that could be collected is the HRV
 // HRV measures the standard deviation of heartbeat intervals
@@ -35,14 +35,33 @@ const getTrackRecommendationWithHRV = (heartRate, hrv) => {
 }
 
 
+// In case there is no hear rate data or value
+const getTrackRecommendationBasedOnTime = () => {
+    const currentHour = new Date().getHours();
+    let recommendations;
+    if (currentHour >= 6 && currentHour < 12) {
+        recommendations = tracks.filter(track => 
+            purposes.morning.includes(track.purpose)
+        )
+      } else if (currentHour >= 12 && currentHour < 18) {
+        recommendations = tracks.filter(track => 
+            purposes.afternoon.includes(track.purpose)
+        )
+      } else {
+        recommendations = tracks.filter(track => 
+            purposes.night.includes(track.purpose)
+        )
+    }
+    return recommendations
+}
 
 
 
 
-
-
-
-
+const recommendBasedOnTime = (req, res) => {
+    const recommendations = getTrackRecommendationBasedOnTime()
+    res.json({recommendations})
+}
 
 const recommendBasedOnHRV = (req, res) => {
     const recommendations = heartRateData.map(data => {
@@ -58,5 +77,6 @@ const recommendBasedOnHRV = (req, res) => {
 }  
 
 module.exports = {
-    recommendBasedOnHRV
+    recommendBasedOnHRV,
+    recommendBasedOnTime
 }
