@@ -186,9 +186,9 @@ To implement, I have created a new version of data set, that that extends the gi
         - Logic: When a user’s heart rate is elevated but HRV is still high, it might indicate excitement or engagement. Theta and Gamma tracks can help bring the user back to a calmer state while promoting creativity.  
         
     - **HRV ≤ 50**
-    - Suitable Tracks: Tracks with **Theta Waves** and **Alpha Waves.** 
-    - Explanation: Theta for deep relaxation and Alpha for calmness. 
-    - Logic: A high heart rate and low HRV may suggest anxiety or stress. Providing tracks that promote relaxation can help the user manage their stress and regain a sense of calm.
+        - Suitable Tracks: Tracks with **Theta Waves** and **Alpha Waves.** 
+        - Explanation: Theta for deep relaxation and Alpha for calmness. 
+        - Logic: A high heart rate and low HRV may suggest anxiety or stress. Providing tracks that promote relaxation can help the user manage their stress and regain a sense of calm.
   
 
 
