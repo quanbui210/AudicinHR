@@ -12,7 +12,7 @@ URL:
 The Tracks API assignment is designed for retrieving track recommendations based on heart rate data. This API consists of two versions: v1 and v2.
 
 ### Folder Structures
-- ```app.js``: Setup port, initialise Express app, configure Swagger UI
+- ```app.js```: Setup port, initialise Express app, configure Swagger UI
 - ```/controller```
 	- Handling the business logic, includes algorithm and recommendation logic for all endpoints
 	- Divided into 3 files
