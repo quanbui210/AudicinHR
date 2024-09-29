@@ -11,6 +11,12 @@ URL:
 
 The Tracks API assignment is designed for retrieving track recommendations based on heart rate data. This API consists of two versions: v1 and v2.
 
+To run the project: 
+- Clone the project ```git clone git@github.com:quanbui210/AudicinHR.git```
+- Navigate to the project folder:  ```cd AudicinHR```
+-  Install all the dependencies:  ```npm install```
+- Start the application: ```npm start```
+
 ### Folder Structures
 - ```app.js```: Setup port, initialise Express app, configure Swagger UI
 - ```/controller```
@@ -125,7 +131,7 @@ Using HRV measurement into track recommendations could be useful because:
 Using both **heart rate** and **HRV** in the recommendation logic provides a more comprehensive understanding of the user's physiological state, allowing for more personalised and effective music suggestions.
 
 
-To implement, I have created a new version of data set, that includes hrv property and more available tracks, which can be found in ```dataHrv.js``` file
+To implement, I have created a new version of data set, that that extends the given data set, to includes hrv data and more tracks, which can be found in ```dataHrv.js``` file
 
 
 #### Endpoints
