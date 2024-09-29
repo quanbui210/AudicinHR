@@ -1,4 +1,4 @@
-const { heartRateData, tracks } = require("../data")
+const { heartRateData, tracks } = require("../data/data")
 
 const purposes = ["Relax" , "Focus", "Creativity", "Deep Relaxation", "Work"]
 

@@ -11,11 +11,30 @@ URL:
 
 The Tracks API assignment is designed for retrieving track recommendations based on heart rate data. This API consists of two versions: v1 and v2.
 
+### Folder Structures
+- ```app.js``: Setup port, initialise Express app, configure Swagger UI
+- ```/controller```
+	- Handling the business logic, includes algorithm and recommendation logic for all endpoints
+	- Divided into 3 files
+		- ```trackController.js``` : v1 implementation
+		- ```purposeController.js``` :  implementation of ```/api/v2/purposes``` endpoint
+		- ```trackControllerAdvanced.js``` : implementing the recommendation endpoints of v2 and Swagger UI logic
+			- ```/api/v2/recommend```
+			- ```/api/v2/recommend-time```
+- ```/router```
+	- Configure the routes for endpoints
+		- ```trackRouter.js``` : configure ```/api/v1/recommend``` endpoint
+		- ```trackAdvancedRouter.js```: configure other endpoints (v2)
+- ```/data```
+	- ```data.js```: Given data from the assignment, for v1 implementation
+	- ```dataHrv.js```: Modified and extended data, to includes HRV and purposes, for v2 implementation
+- ```swaggerv2.js```: Swagger API integration for v2 endpoints.
+
+
 The Rest API is built using NodeJs and ExpressJs, deployed and hosted on [Render](https://render.com/)
 
-
 ### V1
-
+Based on the given data set, stored in ```data.js```, I created an endpoint for get track recommendations. 
 #### Endpoint
 ```api/v1/recommend```
 
@@ -105,6 +124,8 @@ Using HRV measurement into track recommendations could be useful because:
 
 Using both **heart rate** and **HRV** in the recommendation logic provides a more comprehensive understanding of the user's physiological state, allowing for more personalised and effective music suggestions.
 
+
+To implement, I have created a new version of data set, that includes hrv property and more available tracks, which can be found in ```dataHrv.js``` file
 
 
 #### Endpoints

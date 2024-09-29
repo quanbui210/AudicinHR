@@ -1,4 +1,4 @@
-const {tracks, heartRateData, purposes} = require("../dataHrv")
+const {tracks, heartRateData, purposes} = require("../data/dataHrv")
 
 // I read from the HealthKitAPI, one useful data that could be collected is the HRV
 // HRV measures the standard deviation of heartbeat intervals
