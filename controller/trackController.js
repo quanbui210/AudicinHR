@@ -55,8 +55,6 @@ const recommend = (req, res) => {
 
 
 
-
 module.exports = {
-    recommend,
-    getPurposes
+    recommend
 }

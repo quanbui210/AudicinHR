@@ -46,3 +46,10 @@ const heartRateData = [
     { "unit": "count/min", "sdate": 1695548400000, "value": 108, "hrv": 26 },
     { "unit": "count/min", "sdate": 1695548700000, "value": 118, "hrv": 21 }
 ];
+
+
+export const purposes = {
+    morning: ["Work", "Creativity", "Focus"],
+    afternoon: ["Focus", "Creativity", "Work"],
+    night: ["Relax", "Deep Relaxation", "Meditation", "Sleep"]
+};
