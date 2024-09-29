@@ -43,9 +43,9 @@ Based on the given data set, stored in ```data.js```, I created an endpoint for 
     -   **API Request**: When the user specifies a purpose, the API request is formed as follows:
         `GET /api/v1/recommend?purpose={purpose}` 
     -   **Response**: The API will return a list of tracks that match the specified purpose.
-		Example response:
+    
 ```
-Example response:
+Example response: GET /api/v1/recommend?purpose=Relax
 {
 	"recommendations": [
 		{
@@ -146,7 +146,7 @@ To implement, I have created a new version of data set, that includes hrv proper
           - **Beta**: Associated with active thinking, movement, and self-control. Found during alert, engaged states and REM sleep.  
         - Logic: When a user’s heart rate is below 60 with high HRV, they may be in a state of relaxation but still need a boost to function effectively.
         
-    - **HRV ≤ 50 **
+    - **HRV ≤ 50**
         - Suitable Tracks: Tracks with **Theta Waves**.  
         - Explanation: Theta waves promote deep relaxation and can help with creativity.  
         - Logic: In this case, a low heart rate combined with low HRV indicates potential stress or fatigue. Theta tracks can help facilitate relaxation and support recovery.  
@@ -211,8 +211,9 @@ const purposes = {
 *Not only limited to purpose, the logic could be further implemented to also suggest the categories, which includes by purpose, by tone, binaural beat as well.*
 
 ```/api/v2/purposes```
-Example response:
+Example response: GET /api/v2/purposes 
 ```
+GET /api/v2/purposes 
 api call at 09:10:37 (morning)
 {
 	"greeting": "Good morning {{username}}",
