@@ -17,19 +17,24 @@ const findTrackByPurpose = (purpose) => {
 const getTrackRecommendation = (heartRate) => {
     if (heartRate < 60) {
         recommendations = tracks.filter(track => 
-            track.binaural_beat === "Theta" //frequency
+            track.binaural_beat === "Gamma" || track.binaural_beat === "Beta"
         )
     } else if (heartRate >= 60 && heartRate < 80) {
         recommendations = tracks.filter(track => 
-            track.binaural_beat === "Alpha"
+            track.binaural_beat === "Alpha" &&
+            track.frequency >= 8 &&
+            track.frequency <= 12
         );
     } else if (heartRate >= 80 && heartRate < 100) {
         recommendations = tracks.filter(track => 
-            track.binaural_beat === "Beta"
+            track.binaural_beat === "Beta" && 
+            track.frequency >= 12 &&
+            track.frequency <= 30
         );
     } else {
+        // >100bpm is Tachycardia heart rate -> needs calming
         recommendations = tracks.filter(track => 
-            track.binaural_beat === "Gamma"
+            track.binaural_beat === "Theta" || track.binaural_beat === "Alpha"
         );
     }
   return recommendations

@@ -11,7 +11,7 @@ const trackAdvancedRouter = require("./router/trackAdvancedRouter")
 app.use(express.json())
 
 
-app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocsV2));
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocsV2));
 app.use('/api/v1', trackRouter)
 app.use('/api/v2', trackAdvancedRouter)
 

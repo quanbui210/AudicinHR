@@ -6,33 +6,64 @@ const {tracks, heartRateData, purposes} = require("../dataHrv")
 
 const getTrackRecommendationWithHRV = (heartRate, hrv) => {
     let recommendations;
-    if (heartRate < 60 && hrv > 50) {
-        // Low HR, High HRV -> Deep Relaxation (Theta) or Creativity (Gamma)
-        recommendations = tracks.filter(track =>
-            track.binaural_beat === "Theta" || track.binaural_beat === "Gamma"
-        );
-    } else if (heartRate >= 60 && heartRate < 80 && hrv > 50) {
-        // Moderate HR, High HRV -> Focus (Beta) or Creativity (Gamma)
-        recommendations = tracks.filter(track =>
-            track.binaural_beat === "Beta" || track.binaural_beat === "Gamma"
-        );
-    } else if (heartRate >= 80 && heartRate < 100 && hrv < 30) {
-        // High HR, Low HRV -> Recommend Relaxing Tracks (Alpha, Theta)
-        recommendations = tracks.filter(track =>
-            track.binaural_beat === "Alpha" || track.binaural_beat === "Theta"
-        );
-    } else if (heartRate >= 100 && hrv > 50) {
-        // High HR, High HRV -> Energizing Tracks (Gamma)
-        recommendations = tracks.filter(track => 
-            track.binaural_beat === "Gamma"
-        );
+
+    if (heartRate < 60) {
+        // Low HR, High HRV
+        if (hrv > 50) {
+            // Suitable Tracks: Gamma or Beta
+            recommendations = tracks.filter(track =>
+                track.binaural_beat === "Gamma" || track.binaural_beat === "Beta"
+            );
+        } else {
+            // Low HR, Low HRV -> Recommend Theta
+            recommendations = tracks.filter(track =>
+                track.binaural_beat === "Theta"
+            );
+        }
+    } else if (heartRate >= 60 && heartRate < 80) {
+        // Normal HR, High HRV
+        if (hrv > 50) {
+            // Suitable Tracks: Alpha
+            recommendations = tracks.filter(track =>
+                track.binaural_beat === "Alpha"
+            );
+        } else {
+            // Normal HR, Low HRV -> Recommend Alpha and Theta
+            recommendations = tracks.filter(track =>
+                track.binaural_beat === "Alpha" || track.binaural_beat === "Theta"
+            );
+        }
+    } else if (heartRate >= 80 && heartRate < 100) {
+        // Normal HR, High HRV
+        if (hrv > 50) {
+            // Suitable Tracks: Beta
+            recommendations = tracks.filter(track =>
+                track.binaural_beat === "Beta"
+            );
+        } else {
+            // High HR, Low HRV -> Recommend Alpha and Beta
+            recommendations = tracks.filter(track =>
+                track.binaural_beat === "Alpha" || track.binaural_beat === "Beta"
+            );
+        }
     } else {
-        recommendations = tracks.filter(track =>
-            track.binaural_beat === "Alpha"
-        );
+        // High HR, check HRV
+        if (hrv > 50) {
+            // Suitable Tracks: Theta and Gamma
+            recommendations = tracks.filter(track =>
+                track.binaural_beat === "Theta" || track.binaural_beat === "Gamma"
+            );
+        } else {
+            // High HR, Low HRV -> Recommend Theta and Alpha
+            recommendations = tracks.filter(track =>
+                track.binaural_beat === "Theta" || track.binaural_beat === "Alpha"
+            );
+        }
     }
+    
     return recommendations;
-}
+};
+
 
 
 // In case there is no hear rate data or value

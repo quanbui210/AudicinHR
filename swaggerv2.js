@@ -20,7 +20,7 @@ const swaggerOptions = {
       },
     ],
   },
-  apis: ['./router/trackAdvancedRouter.js'], // Adjust this path to where your API routes are defined
+  apis: ['./router/*.js'],
 };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
