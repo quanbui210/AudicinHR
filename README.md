@@ -1,7 +1,7 @@
 # Tracks API
 
 URL:
--  https://audicinhr.onrender.com/docs
+- https://audicinhr.onrender.com/docs
 - https://audicinhr.onrender.com/api/v1/recommend
 - https://audicinhr.onrender.com/api/v2/recommend
 - https://audicinhr.onrender.com/api/v2/recommend-time
@@ -9,7 +9,7 @@ URL:
 
 ## Overview
 
-The Tracks API assignment is designed for retrieving track recommendations based on heart rate data. This API consists of two versions: v1 and v2.
+The Tracks API assignment is designed for retrieving track recommendations based on heart rate data. This API consists of two versions: v1 and v2, basically just different logic and approach handle the assignment. Both are for recommend suitable audio tracks that would help the Audicin app to be more personalised, while V1 uses the given data set from the assignment to recommend tracks based on heart rate and frequency, V2 utilises more data, including the heart rate variability (HRV), heart rat value and time of day to suggest appropriate tracks for users.
 
 To run the project: 
 - Clone the project ```git clone git@github.com:quanbui210/AudicinHR.git```
@@ -17,7 +17,7 @@ To run the project:
 -  Install all the dependencies:  ```npm install```
 - Start the application: ```npm start```
 
-### Folder Structures
+## Folder Structures
 - ```app.js```: Setup port, initialise Express app, configure Swagger UI
 - ```/controller```
 	- Handling the business logic, includes algorithm and recommendation logic for all endpoints
@@ -39,7 +39,7 @@ To run the project:
 
 The Rest API is built using NodeJs and ExpressJs, deployed and hosted on [Render](https://render.com/)
 
-### V1
+## V1
 Based on the given data set, stored in ```data.js```, I created an endpoint for get track recommendations. 
 #### Endpoint
 ```api/v1/recommend```
@@ -112,7 +112,7 @@ and reduced anxiety."
 	- **Logic**: When a user's heart rate is above, which is considered too high, might indicates anxiety or stress. Provide tracks that could calm reduce stress.
 
 
-### V2
+## V2
 After doing some research on the available data that could be collected from the [HealthKit API](https://developer.apple.com/documentation/healthkit/data_types), I decided to create a version 2 of the REST API endpoints, which can utilises the ```# heartRateVariabilitySDNN``` (heart rate variability .data). 
 
 **Why HRV is Important for Track Recommendations:**
@@ -140,10 +140,10 @@ To implement, I have created a new version of data set, that that extends the gi
 /api/v2/recommend-time
 /api/v2/purposes
 ```
+---
 
+```/api/v2/recommend``` 
 #### Ideas:
-
-```/api/v2/recommend```
 - Heart Rate < 60 (bradycardia heart rate)
     - **HRV > 50**  
         - Suitable Tracks: Tracks with **Gamma Waves** or **Beta Waves**.  
@@ -186,13 +186,13 @@ To implement, I have created a new version of data set, that that extends the gi
         - Logic: When a user’s heart rate is elevated but HRV is still high, it might indicate excitement or engagement. Theta and Gamma tracks can help bring the user back to a calmer state while promoting creativity.  
         
     - **HRV ≤ 50**
-        - Suitable Tracks: Tracks with **Theta Waves** and **Alpha Waves.** 
-        - Explanation: Theta for deep relaxation and Alpha for calmness. 
-        - Logic: A high heart rate and low HRV may suggest anxiety or stress. Providing tracks that promote relaxation can help the user manage their stress and regain a sense of calm.
+	    - Suitable Tracks: Tracks with **Theta Waves** and **Alpha Waves.** 
+	    - Explanation: Theta for deep relaxation and Alpha for calmness. 
+	    - Logic: A high heart rate and low HRV may suggest anxiety or stress. Providing tracks that promote relaxation can help the user manage their stress and regain a sense of calm.
   
 
 
-
+---
 
 ```/api/v2/recommend-time``` 
 
@@ -240,7 +240,8 @@ api call at 16:29:23 (afternoon)
 	"purposes": ["Relax", "Deep Relaxation", "Meditation", "Sleep"]
 }
 ```
-
+---
+```/api/v2/purposes```
 ### Ideas
 When implementing the ```recommend-time``` endpoint, I also create an idea of display the suitable purposes for users based on the time of the day.
 - In the Audicin app, when user first enter the app, by knowing the time (for example morning), we could give a prompt like "*Good morning, what are you looking for?*"
