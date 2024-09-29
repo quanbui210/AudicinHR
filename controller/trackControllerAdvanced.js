@@ -69,21 +69,21 @@ const getTrackRecommendationWithHRV = (heartRate, hrv) => {
 // In case there is no hear rate data or value
 const getTrackRecommendationBasedOnTime = () => {
     const currentHour = new Date().getHours();
-    let recommendations;
+    let timeOfDay;
+    console
     if (currentHour >= 6 && currentHour < 12) {
-        recommendations = tracks.filter(track => 
-            purposes.morning.includes(track.purpose)
-        )
-      } else if (currentHour >= 12 && currentHour < 18) {
-        recommendations = tracks.filter(track => 
-            purposes.afternoon.includes(track.purpose)
-        )
-      } else {
-        recommendations = tracks.filter(track => 
-            purposes.night.includes(track.purpose)
-        )
+        timeOfDay = 'morning';
+    } else if (currentHour >= 12 && currentHour < 18) {
+        timeOfDay = 'afternoon';
+    } else {
+        timeOfDay = 'night';
     }
-    return recommendations
+
+    const recommendations = tracks.filter(track => 
+        purposes[timeOfDay].includes(track.purpose)
+    );
+
+    return recommendations;
 }
 
 

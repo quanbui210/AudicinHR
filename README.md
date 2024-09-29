@@ -87,16 +87,27 @@ and reduced anxiety."
 	- **Logic**: When a user's heart rate is above, which is considered too high, might indicates anxiety or stress. Provide tracks that could calm reduce stress.
 
 
-Sources:
- - https://www.heart.org/en/health-topics/arrhythmia/about-arrhythmia/bradycardia--slow-heart-rate
-- https://www.heart.org/en/health-topics/arrhythmia/about-arrhythmia/tachycardia--fast-heart-rate
-
-
-
 ### V2
-Based on the 
-#### Endpoints
+After doing some research on the available data that could be collected from the [HealthKit API](https://developer.apple.com/documentation/healthkit/data_types), I decided to create a version 2 of the REST API endpoints, which can utilises the ```# heartRateVariabilitySDNN``` (heart rate variability .data). 
 
+**Why HRV is Important for Track Recommendations:**
+
+HRV refers to the variation in time between each heartbeat. It is a key indicator of the body's ability to respond to stress and maintain balance. Higher HRV means the body's nervous system is flexible and can handle stress well, showing that body is in a healthier and more relaxed state. On the other hand, lower HRV often means the body is stressed or tired and not well, which can lead to feelings of anxiety or other negative effects.
+
+In HealthKit API, ```# heartRateVariabilitySDNN``` refers to *a quantity sample type that measures the standard deviation of heartbeat intervals.*
+
+Using HRV measurement into track recommendations could be useful because:
+
+-   **High HRV** indicates a state of relaxation, creativity, or well-being. Tracks that enhance focus or creativity (e.g., Gamma or Beta waves) can help the user maintain this positive state.
+    
+-   **Low HRV** often signals stress or fatigue. In this case, tracks that promote deep relaxation (e.g., Theta or Alpha waves) can help reduce anxiety and support recovery.
+    
+
+Using both **heart rate** and **HRV** in the recommendation logic provides a more comprehensive understanding of the user's physiological state, allowing for more personalised and effective music suggestions.
+
+
+
+#### Endpoints
 ```
 /api/v2/recommend
 /api/v2/recommend-time
@@ -105,6 +116,7 @@ Based on the
 
 #### Ideas:
 
+```/api/v2/recommend```
 - Heart Rate < 60 (bradycardia heart rate)
     - **HRV > 50**  
         - Suitable Tracks: Tracks with **Gamma Waves** or **Beta Waves**.  
@@ -152,3 +164,77 @@ Based on the
     - Logic: A high heart rate and low HRV may suggest anxiety or stress. Providing tracks that promote relaxation can help the user manage their stress and regain a sense of calm.
   
 
+
+
+
+```/api/v2/recommend-time``` 
+
+#### Ideas
+In case there is no heart rate or hrv data, I implemented this simple endpoint to provide track recommendations based on the time of day. The idea is that users may need different types of tracks for different times. 
+
+-   **Morning (6 AM - 12 PM)**: Tracks for productivity, creativity, and focus.
+-   **Afternoon (12 PM - 6 PM)**: Tracks to maintain focus and creativity while working.
+-   **Night (6 PM - 6 AM)**: Tracks for relaxation, deep relaxation, meditation, and sleep.
+
+#### Logic:
+-  Get the current time, check whether it's morning, afternoon or night.
+- Filter the tracks based on the ```purposes``` array, and return the suitable tracks based on time of the day for user. 
+
+```
+const purposes = { 
+	morning: ["Work", "Creativity", "Focus"], 
+	afternoon: ["Focus", "Creativity", "Work"], 
+	night: ["Relax", "Deep Relaxation", "Meditation", "Sleep"] 
+};
+```
+*Not only limited to purpose, the logic could be further implemented to also suggest the categories, which includes by purpose, by tone, binaural beat as well.*
+
+```/api/v2/purposes```
+Example response:
+```
+api call at 09:10:37 (morning)
+{
+	"greeting": "Good morning {{username}}",
+	"message": "What are you looking for?",
+	"purposes": ["Focus","Creativity","Work"]
+}
+api call at 16:29:23 (afternoon)
+{
+	"greeting": "Good afternoon {{username}}",
+	"message": "What are you looking for?",
+	"purposes": ["Focus","Creativity","Work"]
+}
+
+ api call at 22:10:37 (night)
+{
+	"greeting": "Good evening {{username}}",
+	"message": "What are you looking for?",
+	"purposes": ["Relax", "Deep Relaxation", "Meditation", "Sleep"]
+}
+```
+
+### Ideas
+When implementing the ```recommend-time``` endpoint, I also create an idea of display the suitable purposes for users based on the time of the day.
+- In the Audicin app, when user first enter the app, by knowing the time (for example morning), we could give a prompt like "*Good morning, what are you looking for?*"
+- Then based on the logic of the ```/api/v2/purposes``` we could display a list of categories (purposes) that match with the time of the day as specified:
+	-   **Morning (6 AM - 12 PM)**: Tracks for productivity, creativity, and focus.
+	-   **Afternoon (12 PM - 6 PM)**: Tracks to maintain focus and creativity while working.
+	-   **Night (6 PM - 6 AM)**: Tracks for relaxation, deep relaxation, meditation, and sleep.
+- User can still have a search bar for typing their desired category, or showing a "*All Categories*" option for them to select. 
+
+
+
+
+
+
+
+
+
+
+
+
+Sources:
+ - https://www.heart.org/en/health-topics/arrhythmia/about-arrhythmia/bradycardia--slow-heart-rate
+- https://www.heart.org/en/health-topics/arrhythmia/about-arrhythmia/tachycardia--fast-heart-rate
+- https://my.clevelandclinic.org/health/symptoms/21773-heart-rate-variability-hrv
+- https://developer.apple.com/documentation/healthkit/hkquantitytypeidentifier/2881127-heartratevariabilitysdnn
