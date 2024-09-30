@@ -1,7 +1,7 @@
 # Tracks API
 
 URL:
-- https://audicinhr.onrender.com/docs
+-  https://audicinhr.onrender.com/docs
 - https://audicinhr.onrender.com/api/v1/recommend
 - https://audicinhr.onrender.com/api/v2/recommend
 - https://audicinhr.onrender.com/api/v2/recommend-time
@@ -196,6 +196,8 @@ To implement, I have created a new version of data set, that that extends the gi
 
 ```/api/v2/recommend-time``` 
 
+*Not only limited to purpose, the logic could be further implemented to also suggest the categories, which includes by purpose, by tone, binaural beat as well.*
+
 #### Ideas
 In case there is no heart rate or hrv data, I implemented this simple endpoint to provide track recommendations based on the time of day. The idea is that users may need different types of tracks for different times. 
 
@@ -207,6 +209,15 @@ In case there is no heart rate or hrv data, I implemented this simple endpoint t
 -  Get the current time, check whether it's morning, afternoon or night.
 - Filter the tracks based on the ```purposes``` array, and return the suitable tracks based on time of the day for user. 
 
+#### Use cases
+- At 8 AM,  user opens the app to start their day. Audicin recommends tracks that promote focus and creativity, with a productive mindset -> Recommend tracks with purposes like “Work,” “Creativity,” and “Focus.”
+- At 2 PM,  user wants to stay productive during their workday. Audicin suggests similar tracks that can help the user stay engaged and focused on their tasks. -> Recommend tracks that continue to improve “Focus” and “Work” (or "Creativity).
+- At 9PM, Audicin app recommend tracks aimed at relaxation and mediation for user to relax and prepare for a good sleep -> Recommend tracks with "Relax, Deep Relaxation, Meditation and Sleep"
+--- 
+```/api/v2/purposes```
+
+*Not only limited to purpose, the logic  could be further implemented to also suggest the categories, which includes by purpose, by tone, binaural beat as well.*
+
 ```
 const purposes = { 
 	morning: ["Work", "Creativity", "Focus"], 
@@ -214,9 +225,7 @@ const purposes = {
 	night: ["Relax", "Deep Relaxation", "Meditation", "Sleep"] 
 };
 ```
-*Not only limited to purpose, the logic could be further implemented to also suggest the categories, which includes by purpose, by tone, binaural beat as well.*
 
-```/api/v2/purposes```
 Example response: GET /api/v2/purposes 
 ```
 GET /api/v2/purposes 
@@ -240,8 +249,6 @@ api call at 16:29:23 (afternoon)
 	"purposes": ["Relax", "Deep Relaxation", "Meditation", "Sleep"]
 }
 ```
----
-```/api/v2/purposes```
 ### Ideas
 When implementing the ```recommend-time``` endpoint, I also create an idea of display the suitable purposes for users based on the time of the day.
 - In the Audicin app, when user first enter the app, by knowing the time (for example morning), we could give a prompt like "*Good morning, what are you looking for?*"
