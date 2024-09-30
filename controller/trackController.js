@@ -1,3 +1,4 @@
+'use strict'
 const { heartRateData, tracks } = require("../data/data")
 
 const purposes = ["Relax" , "Focus", "Creativity", "Deep Relaxation", "Work"]
@@ -15,6 +16,7 @@ const findTrackByPurpose = (purpose) => {
 }
 
 const getTrackRecommendation = (heartRate) => {
+    let recommendations
     if (heartRate < 60) {
         recommendations = tracks.filter(track => 
             track.binaural_beat === "Gamma" || track.binaural_beat === "Beta"
