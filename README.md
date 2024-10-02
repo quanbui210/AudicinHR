@@ -36,13 +36,15 @@ To run the project:
 - Start the application: ```npm start```
 
 
-Testing the endpoints on Postman / Insomnia
+Trying the endpoints on Postman / Insomnia
 - In the root directory of the folder, I have attached an `Audicin.json` file, there are 2 environment which is local and production that you can selects
 	- Open Insomnia (or Postman)
 	- Create a new project
 	- Click "import" button, then select a file
 	- Select `Audicin.json`. 
 
+Testing with Jest
+- Run `npm test`
   
 ## Folder Structures
 
@@ -67,11 +69,11 @@ Testing the endpoints on Postman / Insomnia
 
 -  ```/router```
 
-- Configure the routes for endpoints
-	
-	-  ```trackRouter.js``` : configure ```/api/v1/recommend``` endpoint
+	- Configure the routes for endpoints
+		
+		-  ```trackRouter.js``` : configure ```/api/v1/recommend``` endpoint
 
-	-  ```trackAdvancedRouter.js```: configure other endpoints (v2)
+		-  ```trackAdvancedRouter.js```: configure other endpoints (v2)
 
 -  ```/data```
 
@@ -80,7 +82,9 @@ Testing the endpoints on Postman / Insomnia
 	-  ```dataHrv.js```: Modified and extended data, to includes HRV and purposes, for v2 implementation
 
 -  ```swaggerv2.js```: Swagger API integration for v2 endpoints.
-  
+
+- `/test`: 
+	- `trackv2.test.js`: Test cases for v2 endpoints with Jest
   
 
 The Rest API is built using NodeJs and ExpressJs, deployed and hosted on [Render](https://render.com/)
