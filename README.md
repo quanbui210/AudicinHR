@@ -1,6 +1,16 @@
 
 # Tracks API
 
+
+--- 
+Updates 02.10.2024
+- Add test with Jest
+	- `/test/trackv2.test.js/`
+	- Run `npm test`
+- Update `/recommend` endpoint to accept heart rate data
+	- `GET` -> `POST`
+	- `Audicin.json` file for import and test in Postman/Insomnia
+--- 
   
 
 URL:
