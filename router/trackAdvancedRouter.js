@@ -9,7 +9,7 @@ const { getPurposes } = require('../controller/purposeController');
 /**
  * @swagger
  * /recommend:
- *   get:
+ *   post:
  *     tags:
  *       - Track Recommendation
  *     summary: Retrieve track recommendations based on heart rate and HRV
@@ -133,7 +133,7 @@ const { getPurposes } = require('../controller/purposeController');
  *                     description: The purpose for which tracks can be recommended (e.g., focus, relaxation, creativity)
  */
 
-router.get('/recommend', recommendBasedOnHRV);
+router.post('/recommend', recommendBasedOnHRV);
 router.get('/recommend-time', recommendBasedOnTime);
 router.get('/purposes', getPurposes);
 

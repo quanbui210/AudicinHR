@@ -1,5 +1,5 @@
 'use strict'
-const { heartRateData, tracks } = require("../data/data")
+const { tracks } = require("../data/data")
 
 const purposes = ["Relax" , "Focus", "Creativity", "Deep Relaxation", "Work"]
 
@@ -44,6 +44,7 @@ const getTrackRecommendation = (heartRate) => {
 
 const recommend = (req, res) => {
     const {purpose} = req.query
+    const {heartRateData} = req.body
     if (!purpose) {
         const recommendations = heartRateData.map(data => {
             const recommendation = getTrackRecommendation(data.value);

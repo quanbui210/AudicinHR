@@ -1,4 +1,4 @@
-const {tracks, heartRateData, purposes} = require("../data/dataHrv")
+const {tracks, purposes} = require("../data/dataHrv")
 
 // I read from the HealthKitAPI, one useful data that could be collected is the HRV
 // HRV measures the standard deviation of heartbeat intervals
@@ -95,6 +95,7 @@ const recommendBasedOnTime = (req, res) => {
 }
 
 const recommendBasedOnHRV = (req, res) => {
+    const {heartRateData} = req.body
     const recommendations = heartRateData.map(data => {
         const recommendation = getTrackRecommendationWithHRV(data.value, data.hrv);
         return {
