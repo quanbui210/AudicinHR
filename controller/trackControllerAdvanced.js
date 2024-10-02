@@ -96,6 +96,9 @@ const recommendBasedOnTime = (req, res) => {
 
 const recommendBasedOnHRV = (req, res) => {
     const {heartRateData} = req.body
+    if (!heartRateData || heartRateData.length < 1) {
+        return res.status(400).json({msg: "no value"})
+    }
     const recommendations = heartRateData.map(data => {
         const recommendation = getTrackRecommendationWithHRV(data.value, data.hrv);
         return {
@@ -105,7 +108,7 @@ const recommendBasedOnHRV = (req, res) => {
           recommendation: recommendation
         };
       });
-    res.json({recommendations})
+    res.status(200).json({recommendations})
 }  
 
 module.exports = {

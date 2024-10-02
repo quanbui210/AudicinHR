@@ -175,9 +175,9 @@ Example response: GET /api/v1/recommend?purpose=Relax
 
 -  **No Purpose Query**:
 
-- If the user does not provide a purpose in the query, the API will use an internal recommendation algorithm based on the user’s heart rate data.
+	- If the user does not provide a purpose in the query, the API will use an internal recommendation algorithm based on the user’s heart rate data.
 
-- In this case, the API request looks like:
+	- In this case, the API request looks like:
 
 `POST /api/v1/recommend`
 
@@ -204,35 +204,33 @@ Request body:
 
 - Heart rate < 60 ( bradycardia heart rate)
 
--  **Suitable Tracks**: Tracks with Gamma Waves or Beta Waves: "*Linked to higher cognition, improved memory, and better concentration. Often associated with intense focus or creativity.*" and ""*Associated with active thinking, movement, and self-control. Found during alert, engaged states, and during REM sleep.*"
+	-  **Suitable Tracks**: Tracks with Gamma Waves or Beta Waves: "*Linked to higher cognition, improved memory, and better concentration. Often associated with intense focus or creativity.*" and ""*Associated with active thinking, movement, and self-control. Found during alert, engaged states, and during REM sleep.*"
 
--  **Logic**: When a user's heart rate is below 60, which is considered too low. Provide tracks that could boost their functioning and performance.
+	-  **Logic**: When a user's heart rate is below 60, which is considered too low. Provide tracks that could boost their functioning and performance.
 
   
 
 - Heart rate: 60 - 80 ( normal heart rate)
 
--  **Suitable Tracks**: Tracks with Alpha Waves: "*Related to relaxation and calmness, often linked to creativity and reduced anxiety.*"
+	-  **Suitable Tracks**: Tracks with Alpha Waves: "*Related to relaxation and calmness, often linked to creativity and reduced anxiety.*"
 
--  **Logic**: When a user's heart rate is between 60 and 80, which is considered normal. Alpha tracks are recommended as they can help maintain relaxation while promoting focus and awareness.
+	-  **Logic**: When a user's heart rate is between 60 and 80, which is considered normal. Alpha tracks are recommended as they can help maintain relaxation while promoting focus and awareness.
 
   
 
 - Heart rate: 80 - 100 ( normal heart rate)
 
--  **Suitable Tracks**: Tracks with Beta Waves: "*Associated with active thinking, movement, and self-control. Found during alert, engaged states, and during REM sleep.*"
+	-  **Suitable Tracks**: Tracks with Beta Waves: "*Associated with active thinking, movement, and self-control. Found during alert, engaged states, and during REM sleep.*"
 
--  **Logic**: When a user's heart rate is between 80 and 100, which is considered normal, indicates a more engaged state of mind, often related to stress, anxiety, or focused cognitive tasks. Beta tracks are recommended for those with higher normal heart rates, as they can help enhance concentration and cognitive function.
+	-  **Logic**: When a user's heart rate is between 80 and 100, which is considered normal, indicates a more engaged state of mind, often related to stress, anxiety, or focused cognitive tasks. Beta tracks are recommended for those with higher normal heart rates, as they can help enhance concentration and cognitive function.
 
   
 
 - Heart rate > 100 ( tachycardia heart rate)
 
--  **Suitable Tracks**: Tracks with Theta Waves and Alpha Waves: "*Linked to higher cognition, improved memory, and better concentration. Often associated with intense focus or creativity.*", and " Related to relaxation and calmness, often linked to creativity
+	-  **Suitable Tracks**: Tracks with Theta Waves and Alpha Waves: "*Linked to higher cognition, improved memory, and better concentration. Often associated with intense focus or creativity.*", and " Related to relaxation and calmness, often linked to creativity and reduced anxiety."
 
-and reduced anxiety."
-
-- **Logic**: When a user's heart rate is above, which is considered too high, might indicates anxiety or stress. Provide tracks that could calm reduce stress.
+	- **Logic**: When a user's heart rate is above, which is considered too high, might indicates anxiety or stress. Provide tracks that could calm reduce stress.
 
   
   
@@ -256,8 +254,6 @@ In HealthKit API, ```# heartRateVariabilitySDNN``` refers to *a quantity sample 
   
 
 Using HRV measurement into track recommendations could be useful because:
-
-  
 
 -  **High HRV** indicates a state of relaxation, creativity, or well-being. Tracks that enhance focus or creativity (e.g., Gamma or Beta waves) can help the user maintain this positive state.
 
@@ -327,85 +323,85 @@ Request body:
 
 - Heart Rate < 60 (bradycardia heart rate)
 
--  **HRV > 50**
+	-  **HRV > 50**
 
-- Suitable Tracks: Tracks with **Gamma Waves** or **Beta Waves**.
+		- Suitable Tracks: Tracks with **Gamma Waves** or **Beta Waves**.
 
-- Explanation:
+		- Explanation:
 
--  **Gamma**: Linked to higher cognition, improved memory, and better concentration. Associated with intense focus and creativity.
+		-  **Gamma**: Linked to higher cognition, improved memory, and better concentration. Associated with intense focus and creativity.
 
--  **Beta**: Associated with active thinking, movement, and self-control. Found during alert, engaged states and REM sleep.
+		-  **Beta**: Associated with active thinking, movement, and self-control. Found during alert, engaged states and REM sleep.
 
-- Logic: When a user’s heart rate is below 60 with high HRV, they may be in a state of relaxation but still need a boost to function effectively.
+		- Logic: When a user’s heart rate is below 60 with high HRV, they may be in a state of relaxation but still need a boost to function effectively.
 
--  **HRV ≤ 50**
+	-  **HRV ≤ 50**
 
-- Suitable Tracks: Tracks with **Theta Waves**.
+		- Suitable Tracks: Tracks with **Theta Waves**.
 
-- Explanation: Theta waves promote deep relaxation and can help with creativity.
+		- Explanation: Theta waves promote deep relaxation and can help with creativity.
 
-- Logic: In this case, a low heart rate combined with low HRV indicates potential stress or fatigue. Theta tracks can help facilitate relaxation and support recovery.
+		- Logic: In this case, a low heart rate combined with low HRV indicates potential stress or fatigue. Theta tracks can help facilitate relaxation and support recovery.
 
   
 
 - Heart Rate: 60 - 80 (normal heart rate)
 
--  **HRV > 50**
+	-  **HRV > 50**
 
-- Suitable Tracks: Tracks with **Alpha Waves**.
+		- Suitable Tracks: Tracks with **Alpha Waves**.
 
-- Explanation: Alpha waves are related to relaxation and calmness, often linked to creativity and reduced anxiety.
+		- Explanation: Alpha waves are related to relaxation and calmness, often linked to creativity and reduced anxiety.
 
-- Logic: With a normal heart rate and high HRV, users can maintain a relaxed state while promoting focus and awareness.
+		- Logic: With a normal heart rate and high HRV, users can maintain a relaxed state while promoting focus and awareness.
 
--  **HRV ≤ 50**
+	-  **HRV ≤ 50**
 
-- Suitable Tracks: Tracks with **Alpha Waves** and **Theta Waves**.
+		- Suitable Tracks: Tracks with **Alpha Waves** and **Theta Waves**.
 
-- Explanation: Alpha for relaxation, and Theta for deeper relaxation.
+		- Explanation: Alpha for relaxation, and Theta for deeper relaxation.
 
-- Logic: A normal heart rate with low HRV suggests some underlying stress or anxiety. A combination of Alpha and Theta tracks can help stabilize their mood while promoting relaxation.
+		- Logic: A normal heart rate with low HRV suggests some underlying stress or anxiety. A combination of Alpha and Theta tracks can help stabilize their mood while promoting relaxation.
 
   
 
 - Heart Rate: 80 - 100 (normal heart rate)
 
--  **HRV > 50**
+	-  **HRV > 50**
 
-- Suitable Tracks: Tracks with **Beta Waves**.
+		- Suitable Tracks: Tracks with **Beta Waves**.
 
-- Explanation: Associated with active thinking, movement, and self-control. Found during alert, engaged states and REM sleep.
+		- Explanation: Associated with active thinking, movement, and self-control. Found during alert, engaged states and REM sleep.
 
-- Logic: This range indicates a more engaged state of mind. Beta tracks can enhance concentration and cognitive function.
+		- Logic: This range indicates a more engaged state of mind. Beta tracks can enhance concentration and cognitive function.
 
--  **HRV ≤ 50**
+	-  **HRV ≤ 50**
 
-- Suitable Tracks: Tracks with **Alpha Waves** and **Beta Waves.**
+		- Suitable Tracks: Tracks with **Alpha Waves** and **Beta Waves.**
 
-- Explanation: Alpha tracks promote calmness while Beta tracks enhance focus.
+		- Explanation: Alpha tracks promote calmness while Beta tracks enhance focus.
 
-- Logic: A high heart rate combined with low HRV may indicate stress or anxiety. This combination can help users manage their anxiety while still promoting cognitive engagement.
+		- Logic: A high heart rate combined with low HRV may indicate stress or anxiety. This combination can help users manage their anxiety while still promoting cognitive engagement.
 
   
 
 - Heart Rate > 100 (tachycardia heart rate)
 
--  **HRV > 50**
+	-  **HRV > 50**
 
-- Suitable Tracks: Tracks with **Theta Waves** and **Gamma Waves.**
+		- Suitable Tracks: Tracks with **Theta Waves** and **Gamma Waves.**
 
-- Explanation: Theta for deep relaxation and Gamma for cognitive enhancement.
+		- Explanation: Theta for deep relaxation and Gamma for cognitive enhancement.
 
-- Logic: When a user’s heart rate is elevated but HRV is still high, it might indicate excitement or engagement. Theta and Gamma tracks can help bring the user back to a calmer state while promoting creativity.
+		- Logic: When a user’s heart rate is elevated but HRV is still high, it might indicate excitement or engagement. Theta and Gamma tracks can help bring the user back to a calmer state while promoting creativity.
 
--  **HRV ≤ 50**
+	-  **HRV ≤ 50**
 
-- Suitable Tracks: Tracks with **Theta Waves** and **Alpha Waves.**
+		- Suitable Tracks: Tracks with **Theta Waves** and **Alpha Waves.**
 
-- Explanation: Theta for deep relaxation and Alpha for calmness.
+		- Explanation: Theta for deep relaxation and Alpha for calmness.
 
-- Logic: A high heart rate and low HRV may suggest anxiety or stress. Providing tracks that promote relaxation can help the user manage their stress and regain a sense of calm.
+		- Logic: A high heart rate and low HRV may suggest anxiety or stress. Providing tracks that promote relaxation can help the user manage their stress and regain a sense of calm.
 
   
   
@@ -532,11 +528,11 @@ When implementing the ```recommend-time``` endpoint, I also create an idea of di
 
 - Then based on the logic of the ```/api/v2/purposes``` we could display a list of categories (purposes) that match with the time of the day as specified:
 
--  **Morning (6 AM - 12 PM)**: Tracks for productivity, creativity, and focus.
+	-  **Morning (6 AM - 12 PM)**: Tracks for productivity, creativity, and focus.
 
--  **Afternoon (12 PM - 6 PM)**: Tracks to maintain focus and creativity while working.
+	-  **Afternoon (12 PM - 6 PM)**: Tracks to maintain focus and creativity while working.
 
--  **Night (6 PM - 6 AM)**: Tracks for relaxation, deep relaxation, meditation, and sleep.
+	-  **Night (6 PM - 6 AM)**: Tracks for relaxation, deep relaxation, meditation, and sleep.
 
 - User can still have a search bar for typing their desired category, or showing a "*All Categories*" option for them to select.
 

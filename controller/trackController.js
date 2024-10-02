@@ -45,6 +45,9 @@ const getTrackRecommendation = (heartRate) => {
 const recommend = (req, res) => {
     const {purpose} = req.query
     const {heartRateData} = req.body
+    if (!purpose && heartRateData.length < 1) {
+        return res.status(400).json({msg: "no data"})
+    }
     if (!purpose) {
         const recommendations = heartRateData.map(data => {
             const recommendation = getTrackRecommendation(data.value);
