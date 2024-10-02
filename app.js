@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const cors = require('cors')
 
 const swaggerUi = require('swagger-ui-express');
 
@@ -8,6 +9,7 @@ const swaggerDocsV2 = require('./swaggerv2');
 const trackRouter = require("./router/trackRouter")
 const trackAdvancedRouter = require("./router/trackAdvancedRouter")
 
+app.use(cors())
 app.use(express.json())
 
 
